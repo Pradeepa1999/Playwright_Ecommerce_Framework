@@ -1,7 +1,7 @@
-import {test,expect, chromium, type Browser, type Page} from '@playwright/test';
+import {test,expect,} from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 
-test('Verify successful login',async()=>{
+test('Verify successful login',async({page})=>{
 
     // //open application
     // await page.goto('https://www.saucedemo.com/');
@@ -14,8 +14,7 @@ test('Verify successful login',async()=>{
     // await page.getByRole('button',{name:'Login'}).click();
 
 //create Login page object
-const browser:Browser=await chromium.launch({headless :false,channel:'chrome'});
-    const page:Page=await browser.newPage();
+
 const loginPage=new LoginPage(page);
 
 //Navigate to application
@@ -41,9 +40,8 @@ await expect(page).toHaveURL(
 await page.waitForTimeout(5000);
 
 });
-test('Verify invalid login using POM', async () => {
-    const browser:Browser=await chromium.launch({headless :false,channel:'chrome'});
-    const page:Page=await browser.newPage()
+test('Verify invalid login using POM', async ({page}) => {
+  
     const loginPage = new LoginPage(page);
 
     await loginPage.navigate();

@@ -1,12 +1,11 @@
 
-import {test,expect, chromium, type Browser, type Page} from '@playwright/test';
+import {test,expect} from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 import { ProductsPage } from '../pages/ProductsPage';
 
-test('Verify user can add product to cart', async () => {
+test('Verify user can add product to cart', async ({page}) => {
 
-    const browser:Browser=await chromium.launch({headless :false,channel:'chrome'});
-        const page:Page=await browser.newPage()
+    
 
     // Login
     const loginPage = new LoginPage(page);
